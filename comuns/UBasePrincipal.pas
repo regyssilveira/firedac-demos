@@ -43,6 +43,10 @@ uses
 procedure TFrmBasePrincipal.FormCreate(Sender: TObject);
 begin
   PageControl1.ActivePageIndex := 0;
+
+  EdtBancoServidor.Text := ConfigDemo.Servidor;
+  EdtBancoPorta.Text    := ConfigDemo.Porta;
+  EdtBancoCaminho.Text  := ConfigDemo.Caminho;
 end;
 
 procedure TFrmBasePrincipal.BtnProcurarBancoLocalClick(Sender: TObject);
