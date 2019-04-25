@@ -22,9 +22,20 @@ type
     GroupBox2: TGroupBox;
     DBGrid1: TDBGrid;
     BtnMostrarObjetos: TButton;
+    PageControl2: TPageControl;
+    TabSheet3: TTabSheet;
+    TabSheet4: TTabSheet;
+    DBGrid2: TDBGrid;
+    Splitter2: TSplitter;
+    GroupBox3: TGroupBox;
+    MemSQL: TMemo;
+    Panel1: TPanel;
+    BtnSQLExecutar: TButton;
+    MemComandoExecutado: TMemo;
     procedure LstTabelasClick(Sender: TObject);
     procedure BtnMostrarObjetosClick(Sender: TObject);
     procedure BtnSelecionarClick(Sender: TObject);
+    procedure BtnSQLExecutarClick(Sender: TObject);
   private
     procedure PopularListaTabelas(const ALista: TListBox);
     procedure PopularListaCampos(const ATabela: string; const ALista: TListBox);
@@ -78,6 +89,8 @@ begin
 end;
 
 procedure TFrmPrincipal.BtnSelecionarClick(Sender: TObject);
+var
+  ListaCampos: string;
 
   function GetFieldList: string;
   var
@@ -97,11 +110,28 @@ procedure TFrmPrincipal.BtnSelecionarClick(Sender: TObject);
   end;
 
 begin
+  ListaCampos := GetFieldList;
+  if ListaCampos.Trim.IsEmpty then
+    raise Exception.Create('Nenhum campo foi selecionado!');  
+
   FDQuery1.Close;
   FDQuery1.SQL.Text := 'select &campos from &tabela';
-  FDQuery1.Macros[0].AsRaw := GetFieldList;
+  FDQuery1.Macros[0].AsRaw := ListaCampos;
   FDQuery1.Macros[1].AsRaw := LstTabelas.Items[LstTabelas.ItemIndex];
+  FDQuery1.Prepare;
   FDQuery1.Open;
+
+  MemComandoExecutado.Text := FDQuery1.Text;
+end;
+
+procedure TFrmPrincipal.BtnSQLExecutarClick(Sender: TObject);
+begin
+  FDQuery1.Close;
+  FDQuery1.SQL.Text := MemSQL.Text;
+  FDQuery1.Prepare;
+  FDQuery1.Open;
+
+  MemComandoExecutado.Text := FDQuery1.Text;
 end;
 
 end.
