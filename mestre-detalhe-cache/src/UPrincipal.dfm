@@ -1,93 +1,81 @@
-object Form2: TForm2
-  Left = 0
-  Top = 0
-  Caption = 'Demo Mestre Detalhe'
-  ClientHeight = 457
-  ClientWidth = 891
-  Color = clBtnFace
-  Font.Charset = DEFAULT_CHARSET
-  Font.Color = clWindowText
-  Font.Height = -11
-  Font.Name = 'Tahoma'
-  Font.Style = []
-  OldCreateOrder = False
-  OnClose = FormClose
-  OnCreate = FormCreate
+inherited FrmPrincipal: TFrmPrincipal
+  Caption = 'Mestre Detalhe'
   PixelsPerInch = 96
   TextHeight = 13
-  object Splitter1: TSplitter
-    Left = 0
-    Top = 126
-    Width = 891
-    Height = 3
-    Cursor = crVSplit
-    Align = alTop
-  end
-  object Panel1: TPanel
-    AlignWithMargins = True
-    Left = 3
-    Top = 420
-    Width = 885
-    Height = 34
-    Align = alBottom
-    BevelOuter = bvNone
-    TabOrder = 2
-    object BtnAplicarAlteracoes: TButton
-      AlignWithMargins = True
-      Left = 739
-      Top = 3
-      Width = 143
-      Height = 28
-      Align = alRight
-      Caption = 'Aplicar Altera'#231#245'es'
-      TabOrder = 0
-      OnClick = BtnAplicarAlteracoesClick
+  inherited PageControl1: TPageControl
+    ActivePage = TabSheet1
+    inherited TabSheet1: TTabSheet
+      object Splitter1: TSplitter
+        Left = 0
+        Top = 126
+        Width = 935
+        Height = 5
+        Cursor = crVSplit
+        Align = alTop
+      end
+      object Panel1: TPanel
+        AlignWithMargins = True
+        Left = 3
+        Top = 555
+        Width = 929
+        Height = 34
+        Align = alBottom
+        BevelOuter = bvNone
+        TabOrder = 2
+        object BtnAplicarAlteracoes: TButton
+          AlignWithMargins = True
+          Left = 776
+          Top = 3
+          Width = 150
+          Height = 28
+          Align = alRight
+          Caption = 'Aplicar Altera'#231#245'es'
+          TabOrder = 1
+          OnClick = BtnAplicarAlteracoesClick
+        end
+        object BtnAbrirTabelas: TButton
+          AlignWithMargins = True
+          Left = 3
+          Top = 3
+          Width = 150
+          Height = 28
+          Align = alLeft
+          Caption = 'Abrir tabelas'
+          TabOrder = 0
+          OnClick = BtnAbrirTabelasClick
+        end
+      end
+      object DBGrid1: TDBGrid
+        AlignWithMargins = True
+        Left = 3
+        Top = 3
+        Width = 929
+        Height = 120
+        Align = alTop
+        DataSource = DtsMestre
+        TabOrder = 0
+        TitleFont.Charset = DEFAULT_CHARSET
+        TitleFont.Color = clWindowText
+        TitleFont.Height = -11
+        TitleFont.Name = 'Tahoma'
+        TitleFont.Style = []
+      end
+      object DBGrid2: TDBGrid
+        AlignWithMargins = True
+        Left = 3
+        Top = 134
+        Width = 929
+        Height = 415
+        Align = alClient
+        DataSource = DtsDetalhe
+        TabOrder = 1
+        TitleFont.Charset = DEFAULT_CHARSET
+        TitleFont.Color = clWindowText
+        TitleFont.Height = -11
+        TitleFont.Name = 'Tahoma'
+        TitleFont.Style = []
+      end
     end
-  end
-  object DBGrid1: TDBGrid
-    AlignWithMargins = True
-    Left = 3
-    Top = 3
-    Width = 885
-    Height = 120
-    Align = alTop
-    DataSource = DtsMestre
-    TabOrder = 0
-    TitleFont.Charset = DEFAULT_CHARSET
-    TitleFont.Color = clWindowText
-    TitleFont.Height = -11
-    TitleFont.Name = 'Tahoma'
-    TitleFont.Style = []
-  end
-  object DBGrid2: TDBGrid
-    AlignWithMargins = True
-    Left = 3
-    Top = 132
-    Width = 885
-    Height = 282
-    Align = alClient
-    DataSource = DtsDetalhe
-    TabOrder = 1
-    TitleFont.Charset = DEFAULT_CHARSET
-    TitleFont.Color = clWindowText
-    TitleFont.Height = -11
-    TitleFont.Name = 'Tahoma'
-    TitleFont.Style = []
-  end
-  object FDConnection1: TFDConnection
-    Params.Strings = (
-      
-        'Database=C:\Users\regys\Desktop\Teste MD\bin\database\MESTREDETA' +
-        'LHE.FDB'
-      'User_Name=sysdba'
-      'Password=masterkey'
-      'CharacterSet=WIN1252'
-      'DriverID=FB')
-    ConnectedStoredUsage = []
-    LoginPrompt = False
-    BeforeConnect = FDConnection1BeforeConnect
-    Left = 125
-    Top = 230
   end
   object DtsMestre: TDataSource
     DataSet = QryMestre
@@ -101,7 +89,7 @@ object Form2: TForm2
   end
   object QryMestre: TFDQuery
     CachedUpdates = True
-    Connection = FDConnection1
+    Connection = DtmConnection.FDConnection1
     SchemaAdapter = FDSchemaAdapter1
     FetchOptions.AssignedValues = [evDetailCascade]
     SQL.Strings = (
@@ -127,7 +115,7 @@ object Form2: TForm2
     MasterSource = DtsMestre
     MasterFields = 'ID_MESTRE'
     DetailFields = 'ID_MESTRE'
-    Connection = FDConnection1
+    Connection = DtmConnection.FDConnection1
     SchemaAdapter = FDSchemaAdapter1
     FetchOptions.AssignedValues = [evDetailCascade, evDetailServerCascade]
     FetchOptions.DetailCascade = True
@@ -171,24 +159,5 @@ object Form2: TForm2
     AfterApplyUpdate = FDSchemaAdapter1AfterApplyUpdate
     Left = 395
     Top = 270
-  end
-  object FDGUIxErrorDialog1: TFDGUIxErrorDialog
-    Provider = 'Forms'
-    Left = 745
-    Top = 215
-  end
-  object FDGUIxWaitCursor1: TFDGUIxWaitCursor
-    Provider = 'Forms'
-    Left = 745
-    Top = 165
-  end
-  object FDGUIxLoginDialog1: TFDGUIxLoginDialog
-    Provider = 'Forms'
-    Left = 745
-    Top = 260
-  end
-  object FDPhysFBDriverLink1: TFDPhysFBDriverLink
-    Left = 745
-    Top = 305
   end
 end

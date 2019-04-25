@@ -4,80 +4,73 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, FireDAC.Stan.Intf, FireDAC.Stan.Option,
-  FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf, FireDAC.Stan.Def,
-  FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys, FireDAC.Phys.FB,
-  FireDAC.Phys.FBDef, FireDAC.VCLUI.Wait, Data.DB, FireDAC.Comp.Client,
-  Vcl.ExtCtrls, Vcl.Grids, Vcl.DBGrids, Vcl.StdCtrls, FireDAC.Stan.Param,
-  FireDAC.DatS, FireDAC.DApt.Intf, FireDAC.DApt, FireDAC.Comp.DataSet,
-  FireDAC.VCLUI.Error, FireDAC.VCLUI.Login, FireDAC.Comp.UI, FireDAC.Phys.IBBase;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, UBasePrincipal, Data.DB,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
+  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
+  FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.Client, FireDAC.Comp.DataSet,
+  Vcl.Grids, Vcl.DBGrids, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Buttons, Vcl.ComCtrls;
 
 type
-  TForm2 = class(TForm)
-    FDConnection1: TFDConnection;
+  TFrmPrincipal = class(TFrmBasePrincipal)
+    Splitter1: TSplitter;
     Panel1: TPanel;
+    BtnAplicarAlteracoes: TButton;
     DBGrid1: TDBGrid;
     DBGrid2: TDBGrid;
-    Splitter1: TSplitter;
-    BtnAplicarAlteracoes: TButton;
     DtsMestre: TDataSource;
     DtsDetalhe: TDataSource;
     QryMestre: TFDQuery;
-    QryDetalhe: TFDQuery;
     QryMestreID_MESTRE: TIntegerField;
     QryMestreDESCRICAO: TStringField;
+    QryDetalhe: TFDQuery;
     QryDetalheID_MESTRE: TIntegerField;
     QryDetalheID_ITEM: TIntegerField;
     QryDetalheDESCRICAO: TStringField;
     QryDetalheVALOR: TFMTBCDField;
     FDSchemaAdapter1: TFDSchemaAdapter;
-    FDGUIxErrorDialog1: TFDGUIxErrorDialog;
-    FDGUIxWaitCursor1: TFDGUIxWaitCursor;
-    FDGUIxLoginDialog1: TFDGUIxLoginDialog;
-    FDPhysFBDriverLink1: TFDPhysFBDriverLink;
-    procedure FDConnection1BeforeConnect(Sender: TObject);
+    BtnAbrirTabelas: TButton;
     procedure BtnAplicarAlteracoesClick(Sender: TObject);
     procedure FDSchemaAdapter1AfterApplyUpdate(Sender: TObject);
-    procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure FormCreate(Sender: TObject);
+    procedure BtnAbrirTabelasClick(Sender: TObject);
   private
-
+    { Private declarations }
   public
-
+    { Public declarations }
   end;
 
 var
-  Form2: TForm2;
+  FrmPrincipal: TFrmPrincipal;
 
 implementation
 
+uses
+  UConnection;
+
 {$R *.dfm}
 
-procedure TForm2.FDConnection1BeforeConnect(Sender: TObject);
-begin
-  FDConnection1.Params.Values['database'] := ExtractFilePath(ParamStr(0)) + 'database\mestredetalhe.fdb';
-end;
-
-procedure TForm2.FormCreate(Sender: TObject);
+procedure TFrmPrincipal.BtnAbrirTabelasClick(Sender: TObject);
 begin
   QryMestre.Open;
   QryDetalhe.Open;
 end;
 
-procedure TForm2.FormClose(Sender: TObject; var Action: TCloseAction);
+procedure TFrmPrincipal.FDSchemaAdapter1AfterApplyUpdate(Sender: TObject);
 begin
-  FDConnection1.Close;
-end;
-
-procedure TForm2.BtnAplicarAlteracoesClick(Sender: TObject);
-begin
-  FDSchemaAdapter1.ApplyUpdates;
-end;
-
-procedure TForm2.FDSchemaAdapter1AfterApplyUpdate(Sender: TObject);
-begin
+  // limpeza do cache após o apply updates
   QryMestre.CommitUpdates;
   QryDetalhe.CommitUpdates;
+end;
+
+procedure TFrmPrincipal.BtnAplicarAlteracoesClick(Sender: TObject);
+begin
+  // persistir alterações que estão no cache para o banco
+  if FDSchemaAdapter1.ChangeCount > 0 then
+  begin
+    FDSchemaAdapter1.ApplyUpdates;
+    ShowMessage('Alterações aplicadas com sucesso!');
+  end
+  else
+    ShowMessage('Não existe nenhuma alteração para aplicar!');
 end;
 
 end.
