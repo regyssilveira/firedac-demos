@@ -20,9 +20,10 @@ object FrmBasePrincipal: TFrmBasePrincipal
     Top = 3
     Width = 943
     Height = 620
-    ActivePage = TabSheet2
+    ActivePage = TabSheet1
     Align = alClient
     TabOrder = 0
+    TabStop = False
     TabWidth = 150
     object TabSheet1: TTabSheet
       Caption = 'Principal'
