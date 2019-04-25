@@ -12,7 +12,7 @@ uses
   FireDAC.Phys.PG, Data.DB, FireDAC.Comp.Client, FireDAC.Stan.ExprFuncs,
   FireDAC.Phys.SQLiteDef, FireDAC.Phys.SQLite, FireDAC.Phys.SQLiteVDataSet,
   FireDAC.Stan.Param, FireDAC.DatS, FireDAC.DApt.Intf, FireDAC.DApt,
-  FireDAC.Comp.DataSet;
+  FireDAC.Comp.DataSet, Vcl.Grids, Vcl.DBGrids, Vcl.StdCtrls, Vcl.ExtCtrls;
 
 type
   TForm1 = class(TForm)
@@ -29,6 +29,11 @@ type
     QryFirebird: TFDQuery;
     QryPG: TFDQuery;
     QryLocal: TFDQuery;
+    DBGrid1: TDBGrid;
+    Panel1: TPanel;
+    Button1: TButton;
+    DataSource1: TDataSource;
+    procedure Button1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -41,5 +46,10 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TForm1.Button1Click(Sender: TObject);
+begin
+  QryLocal.Open;
+end;
 
 end.

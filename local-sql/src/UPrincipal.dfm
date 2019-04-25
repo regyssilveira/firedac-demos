@@ -13,6 +13,42 @@ object Form1: TForm1
   OldCreateOrder = False
   PixelsPerInch = 96
   TextHeight = 13
+  object DBGrid1: TDBGrid
+    AlignWithMargins = True
+    Left = 3
+    Top = 44
+    Width = 1058
+    Height = 594
+    Align = alClient
+    DataSource = DataSource1
+    TabOrder = 1
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = []
+  end
+  object Panel1: TPanel
+    Left = 0
+    Top = 0
+    Width = 1064
+    Height = 41
+    Align = alTop
+    BevelOuter = bvNone
+    TabOrder = 0
+    ExplicitLeft = 450
+    ExplicitTop = 320
+    ExplicitWidth = 185
+    object Button1: TButton
+      Left = 10
+      Top = 9
+      Width = 191
+      Height = 25
+      Caption = 'Abrir Local SQL'
+      TabOrder = 0
+      OnClick = Button1Click
+    end
+  end
   object FDConnFirebird: TFDConnection
     Params.Strings = (
       'Database=D:\projetos\firedac-demos\demo-database\firebirddb.FDB'
@@ -20,82 +56,77 @@ object Form1: TForm1
       'Password=masterkey'
       'CharacterSet=WIN1252'
       'DriverID=FB')
-    Connected = True
     LoginPrompt = False
-    Left = 205
-    Top = 70
+    Left = 295
+    Top = 200
   end
   object FDConnPG: TFDConnection
     Params.Strings = (
       'Database=CursoFiredac'
       'User_Name=postgres'
-      'Password=123456'
+      'Password=sautcom'
       'DriverID=PG')
-    Connected = True
     LoginPrompt = False
-    Left = 330
-    Top = 70
+    Left = 420
+    Top = 200
   end
   object FDPhysPgDriverLink1: TFDPhysPgDriverLink
     VendorHome = 'C:\PostgreSQL\psqlodbc32bits'
-    Left = 750
-    Top = 170
+    Left = 560
+    Top = 305
   end
   object FDPhysFBDriverLink1: TFDPhysFBDriverLink
-    Left = 750
-    Top = 220
+    Left = 560
+    Top = 355
   end
   object FDGUIxErrorDialog1: TFDGUIxErrorDialog
     Provider = 'Forms'
-    Left = 760
-    Top = 65
+    Left = 745
+    Top = 260
   end
   object FDGUIxLoginDialog1: TFDGUIxLoginDialog
     Provider = 'Forms'
-    Left = 770
-    Top = 75
+    Left = 745
+    Top = 215
   end
   object FDGUIxWaitCursor1: TFDGUIxWaitCursor
     Provider = 'Forms'
-    Left = 780
-    Top = 85
+    Left = 745
+    Top = 170
   end
   object FDLocalSQL1: TFDLocalSQL
     Connection = FDConnLocal
     Active = True
     DataSets = <>
-    Left = 260
-    Top = 215
+    Left = 350
+    Top = 345
   end
   object FDPhysSQLiteDriverLink1: TFDPhysSQLiteDriverLink
-    Left = 750
-    Top = 270
+    Left = 560
+    Top = 405
   end
   object FDConnLocal: TFDConnection
     Params.Strings = (
       'DriverID=SQLite')
-    Connected = True
     LoginPrompt = False
-    Left = 260
-    Top = 265
+    Left = 350
+    Top = 395
   end
   object QryFirebird: TFDQuery
-    Active = True
     LocalSQL = FDLocalSQL1
     Connection = FDConnFirebird
     SQL.Strings = (
       'select * from localsql')
-    Left = 205
-    Top = 120
+    Left = 295
+    Top = 250
   end
   object QryPG: TFDQuery
-    Active = True
     LocalSQL = FDLocalSQL1
     Connection = FDConnPG
     SQL.Strings = (
       'select * from localsql')
-    Left = 330
-    Top = 120
+    Left = 420
+    Top = 250
   end
   object QryLocal: TFDQuery
     Connection = FDConnLocal
@@ -103,7 +134,12 @@ object Form1: TForm1
       'select * from QryFirebird'
       'union all'
       'select * from QryPG')
-    Left = 260
-    Top = 315
+    Left = 350
+    Top = 445
+  end
+  object DataSource1: TDataSource
+    DataSet = QryLocal
+    Left = 135
+    Top = 385
   end
 end
