@@ -50,14 +50,22 @@ begin
   if ConfigDemo.FBServer.Caminho.Trim.IsEmpty then
     raise EDatabaseError.Create('Caminho da base de dados ou alias ainda não foi configurado!');
 
+  if ConfigDemo.FBServer.Usuario.Trim.IsEmpty then
+    raise EDatabaseError.Create('Usuário ainda não foi configurado!');
+
+  if ConfigDemo.FBServer.Senha.Trim.IsEmpty then
+    raise EDatabaseError.Create('Senha de acesso ainda não foi configurado!');
+
   if ConfigDemo.FBServer.IsLocal then
     FDConnection1.Params.Values['Protocol'] := 'LOCAL'
   else
     FDConnection1.Params.Values['Protocol'] := 'TCP';
 
-  FDConnection1.Params.Values['Server']   := ConfigDemo.FBServer.Servidor;
-  FDConnection1.Params.Values['Port']     := ConfigDemo.FBServer.Porta;
-  FDConnection1.Params.Values['Database'] := ConfigDemo.FBServer.Caminho;
+  FDConnection1.Params.Values['Server']    := ConfigDemo.FBServer.Servidor;
+  FDConnection1.Params.Values['Port']      := ConfigDemo.FBServer.Porta;
+  FDConnection1.Params.Values['Database']  := ConfigDemo.FBServer.Caminho;
+  FDConnection1.Params.Values['User_Name'] := ConfigDemo.FBServer.Usuario;
+  FDConnection1.Params.Values['Password']  := ConfigDemo.FBServer.Senha;
 end;
 
 end.

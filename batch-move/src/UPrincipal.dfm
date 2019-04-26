@@ -7,7 +7,6 @@ inherited FrmPrincipal: TFrmPrincipal
   inherited PageControl1: TPageControl
     Width = 848
     Height = 525
-    ActivePage = TabSheet2
     inherited TabSheet1: TTabSheet
       object PageControl2: TPageControl
         AlignWithMargins = True
@@ -15,10 +14,11 @@ inherited FrmPrincipal: TFrmPrincipal
         Top = 3
         Width = 834
         Height = 491
-        ActivePage = TabSheet4
+        ActivePage = TabSheet3
         Align = alClient
         TabOrder = 0
         TabStop = False
+        TabWidth = 150
         object TabSheet3: TTabSheet
           Caption = 'Exportar para arquivo'
           object Splitter1: TSplitter
@@ -143,31 +143,45 @@ inherited FrmPrincipal: TFrmPrincipal
           end
         end
         object TabSheet5: TTabSheet
-          Caption = 'TabSheet5'
+          Caption = 'Mover dados'
           ImageIndex = 2
-        end
-        object TabSheet6: TTabSheet
-          Caption = 'TabSheet6'
-          ImageIndex = 3
+          object BtnMoverDados: TSpeedButton
+            Left = 20
+            Top = 15
+            Width = 133
+            Height = 37
+            Caption = 'Mover dados'
+            OnClick = BtnMoverDadosClick
+          end
         end
       end
     end
     inherited TabSheet2: TTabSheet
       Caption = 'Configura'#231#245'es FB'
-    end
-    object TabSheet7: TTabSheet
-      Caption = 'Configura'#231#245'es PG'
-      ImageIndex = 2
+      inherited GbxPostgreSQL: TGroupBox
+        Width = 834
+        Visible = True
+      end
+      inherited GbxFirebird: TGroupBox
+        Width = 834
+      end
+      inherited PnlBotton: TPanel
+        Top = 456
+        Width = 840
+        inherited BtnSalvarConfiguracoes: TSpeedButton
+          Left = 733
+        end
+      end
     end
   end
   object DtsExporta: TDataSource
     DataSet = DtmExportaArquivo.QryExportaArquivo
-    Left = 95
-    Top = 195
+    Left = 600
+    Top = 235
   end
   object DtsBatchMove: TDataSource
     DataSet = DtmImportaArquivo.QryBatchMove
-    Left = 95
-    Top = 250
+    Left = 600
+    Top = 290
   end
 end

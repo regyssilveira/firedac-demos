@@ -1,19 +1,17 @@
 inherited FrmPrincipal: TFrmPrincipal
   Caption = 'Demo Array DML'
   ClientWidth = 559
-  ExplicitWidth = 575
   PixelsPerInch = 96
   TextHeight = 13
   inherited PageControl1: TPageControl
     Width = 553
-    ExplicitWidth = 553
     inherited TabSheet1: TTabSheet
-      object Label4: TLabel
+      object Label11: TLabel
         Left = 20
         Top = 19
-        Width = 154
+        Width = 138
         Height = 13
-        Caption = 'Quantidade de itens para inserir'
+        Caption = 'Quantidade de itens a inserir'
       end
       object BtnInsercaoNormal: TButton
         Left = 367
@@ -45,10 +43,24 @@ inherited FrmPrincipal: TFrmPrincipal
       end
       object Memo1: TMemo
         Left = 3
-        Top = 100
+        Top = 110
         Width = 533
-        Height = 489
+        Height = 479
         TabOrder = 3
+      end
+    end
+    inherited TabSheet2: TTabSheet
+      inherited GbxPostgreSQL: TGroupBox
+        Width = 539
+      end
+      inherited GbxFirebird: TGroupBox
+        Width = 539
+      end
+      inherited PnlBotton: TPanel
+        Width = 545
+        inherited BtnSalvarConfiguracoes: TSpeedButton
+          Left = 438
+        end
       end
     end
   end

@@ -8,15 +8,15 @@ uses
   Vcl.Buttons, Vcl.ComCtrls, Vcl.Samples.Spin, FireDAC.Stan.Intf,
   FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS,
   FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt,
-  Data.DB, FireDAC.Comp.DataSet, FireDAC.Comp.Client;
+  Data.DB, FireDAC.Comp.DataSet, FireDAC.Comp.Client, Vcl.ExtCtrls;
 
 type
   TFrmPrincipal = class(TFrmBasePrincipal)
-    Label4: TLabel;
     BtnInsercaoNormal: TButton;
     BtnInsercaoArrayDML: TButton;
     edtQuantidadeItens: TSpinEdit;
     Memo1: TMemo;
+    Label11: TLabel;
     procedure BtnInsercaoNormalClick(Sender: TObject);
     procedure BtnInsercaoArrayDMLClick(Sender: TObject);
   private

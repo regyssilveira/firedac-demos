@@ -23,6 +23,10 @@ type
     procedure SetPorta(const Value: string);
     function GetCaminho: string;
     procedure SetCaminho(const Value: string);
+    function GetUsuario: string;
+    procedure SetUsuario(const Value: string);
+    function GetSenha: string;
+    procedure SetSenha(const Value: string);
   public
     constructor Create(const ASecao: string; const AOwner: TIniFile);
 
@@ -31,6 +35,8 @@ type
     property Servidor: string read GetServidor write SetServidor;
     property Porta: string read GetPorta write SetPorta;
     property Caminho: string read GetCaminho write SetCaminho;
+    property Usuario: string read GetUsuario write SetUsuario;
+    property Senha: string read GetSenha write SetSenha;
   end;
 
   TDemoFiredacConfig = class(TIniFile)
@@ -72,12 +78,22 @@ end;
 
 function TConfigServer.GetPorta: string;
 begin
-  Result := FOwner.ReadString(FSECAO, ID_PORTA, '3050');
+  Result := FOwner.ReadString(FSECAO, ID_PORTA, '');
+end;
+
+function TConfigServer.GetSenha: string;
+begin
+  Result := FOwner.ReadString(FSECAO, ID_SENHA, '');
 end;
 
 function TConfigServer.GetServidor: string;
 begin
   Result := FOwner.ReadString(FSECAO, ID_SERVIDOR, 'localhost');
+end;
+
+function TConfigServer.GetUsuario: string;
+begin
+  Result := FOwner.ReadString(FSECAO, ID_USUARIO, '');
 end;
 
 procedure TConfigServer.SetCaminho(const Value: string);
@@ -90,11 +106,20 @@ begin
   FOwner.WriteString(FSECAO, ID_PORTA, Value);
 end;
 
+procedure TConfigServer.SetSenha(const Value: string);
+begin
+  FOwner.WriteString(FSECAO, ID_SENHA, Value);
+end;
+
 procedure TConfigServer.SetServidor(const Value: string);
 begin
   FOwner.WriteString(FSECAO, ID_SERVIDOR, Value);
 end;
 
+procedure TConfigServer.SetUsuario(const Value: string);
+begin
+  FOwner.WriteString(FSECAO, ID_USUARIO, Value);
+end;
 
 { TDemoFiredacConfig }
 

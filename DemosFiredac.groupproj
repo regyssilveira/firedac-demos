@@ -1,0 +1,84 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{248F2349-8589-49A8-9638-6C68359FABE8}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="batch-move\src\batchmove.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="array-dml\src\ArrayDML.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="local-sql\src\LocalSQL.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="macros\src\macros.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="mestre-detalhe-cache\src\TesteMestreDetalhe.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="batchmove">
+        <MSBuild Projects="batch-move\src\batchmove.dproj"/>
+    </Target>
+    <Target Name="batchmove:Clean">
+        <MSBuild Projects="batch-move\src\batchmove.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="batchmove:Make">
+        <MSBuild Projects="batch-move\src\batchmove.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="ArrayDML">
+        <MSBuild Projects="array-dml\src\ArrayDML.dproj"/>
+    </Target>
+    <Target Name="ArrayDML:Clean">
+        <MSBuild Projects="array-dml\src\ArrayDML.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ArrayDML:Make">
+        <MSBuild Projects="array-dml\src\ArrayDML.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="LocalSQL">
+        <MSBuild Projects="local-sql\src\LocalSQL.dproj"/>
+    </Target>
+    <Target Name="LocalSQL:Clean">
+        <MSBuild Projects="local-sql\src\LocalSQL.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="LocalSQL:Make">
+        <MSBuild Projects="local-sql\src\LocalSQL.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="macros">
+        <MSBuild Projects="macros\src\macros.dproj"/>
+    </Target>
+    <Target Name="macros:Clean">
+        <MSBuild Projects="macros\src\macros.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="macros:Make">
+        <MSBuild Projects="macros\src\macros.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="TesteMestreDetalhe">
+        <MSBuild Projects="mestre-detalhe-cache\src\TesteMestreDetalhe.dproj"/>
+    </Target>
+    <Target Name="TesteMestreDetalhe:Clean">
+        <MSBuild Projects="mestre-detalhe-cache\src\TesteMestreDetalhe.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TesteMestreDetalhe:Make">
+        <MSBuild Projects="mestre-detalhe-cache\src\TesteMestreDetalhe.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="batchmove;ArrayDML;LocalSQL;macros;TesteMestreDetalhe"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="batchmove:Clean;ArrayDML:Clean;LocalSQL:Clean;macros:Clean;TesteMestreDetalhe:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="batchmove:Make;ArrayDML:Make;LocalSQL:Make;macros:Make;TesteMestreDetalhe:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

@@ -18,7 +18,6 @@ type
     TabSheet3: TTabSheet;
     TabSheet4: TTabSheet;
     TabSheet5: TTabSheet;
-    TabSheet6: TTabSheet;
     Panel1: TPanel;
     DBGrid1: TDBGrid;
     MemSQLSelecionar: TMemo;
@@ -32,12 +31,13 @@ type
     BtnImpArquivo: TSpeedButton;
     DtsBatchMove: TDataSource;
     BtnImpArquivoAbrir: TSpeedButton;
-    TabSheet7: TTabSheet;
+    BtnMoverDados: TSpeedButton;
     procedure FormCreate(Sender: TObject);
     procedure BtnExpArqExecutaSQLClick(Sender: TObject);
     procedure BtnExpArqSalvarClick(Sender: TObject);
     procedure BtnImpArquivoClick(Sender: TObject);
     procedure BtnImpArquivoAbrirClick(Sender: TObject);
+    procedure BtnMoverDadosClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -50,7 +50,7 @@ var
 implementation
 
 uses
-  UFBConnection, UEXportaArquivo, UImportaArquivo;
+  UFBConnection, UEXportaArquivo, UImportaArquivo, UMoverDados;
 
 {$R *.dfm}
 
@@ -80,6 +80,11 @@ end;
 procedure TFrmPrincipal.BtnImpArquivoClick(Sender: TObject);
 begin
   DtmImportaArquivo.ImportarArquivo;
+end;
+
+procedure TFrmPrincipal.BtnMoverDadosClick(Sender: TObject);
+begin
+  DtmMoverDados.MoverDados;
 end;
 
 end.
