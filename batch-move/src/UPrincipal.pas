@@ -23,21 +23,22 @@ type
     MemSQLSelecionar: TMemo;
     Panel2: TPanel;
     BtnExpArqExecutaSQL: TSpeedButton;
-    Splitter1: TSplitter;
     DtsExporta: TDataSource;
-    BtnExpArqSalvar: TSpeedButton;
+    BtnExpArqSalvarTXT: TSpeedButton;
     Panel3: TPanel;
     DBGrid2: TDBGrid;
     BtnImpArquivo: TSpeedButton;
     DtsBatchMove: TDataSource;
     BtnImpArquivoAbrir: TSpeedButton;
     BtnMoverDados: TSpeedButton;
+    BtnExpArqSalvarJSON: TSpeedButton;
     procedure FormCreate(Sender: TObject);
     procedure BtnExpArqExecutaSQLClick(Sender: TObject);
-    procedure BtnExpArqSalvarClick(Sender: TObject);
+    procedure BtnExpArqSalvarTXTClick(Sender: TObject);
     procedure BtnImpArquivoClick(Sender: TObject);
     procedure BtnImpArquivoAbrirClick(Sender: TObject);
     procedure BtnMoverDadosClick(Sender: TObject);
+    procedure BtnExpArqSalvarJSONClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -66,7 +67,12 @@ begin
   DtmExportaArquivo.SelecionarDados(MemSQLSelecionar.Text);
 end;
 
-procedure TFrmPrincipal.BtnExpArqSalvarClick(Sender: TObject);
+procedure TFrmPrincipal.BtnExpArqSalvarJSONClick(Sender: TObject);
+begin
+  DtmExportaArquivo.SalvarArquivoJSON;
+end;
+
+procedure TFrmPrincipal.BtnExpArqSalvarTXTClick(Sender: TObject);
 begin
   DtmExportaArquivo.SalvarArquivoTexto;
 end;

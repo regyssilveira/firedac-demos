@@ -21,19 +21,11 @@ inherited FrmPrincipal: TFrmPrincipal
         TabWidth = 150
         object TabSheet3: TTabSheet
           Caption = 'Exportar para arquivo'
-          object Splitter1: TSplitter
-            Left = 0
-            Top = 81
-            Width = 826
-            Height = 5
-            Cursor = crVSplit
-            Align = alTop
-          end
           object Panel1: TPanel
             Left = 0
             Top = 0
             Width = 826
-            Height = 81
+            Height = 131
             Align = alTop
             BevelOuter = bvNone
             TabOrder = 0
@@ -42,7 +34,7 @@ inherited FrmPrincipal: TFrmPrincipal
               Left = 3
               Top = 3
               Width = 707
-              Height = 75
+              Height = 125
               Align = alClient
               Lines.Strings = (
                 'select * from batchmove')
@@ -52,7 +44,7 @@ inherited FrmPrincipal: TFrmPrincipal
               Left = 713
               Top = 0
               Width = 113
-              Height = 81
+              Height = 131
               Align = alRight
               BevelOuter = bvNone
               TabOrder = 1
@@ -66,24 +58,34 @@ inherited FrmPrincipal: TFrmPrincipal
                 Caption = 'Executar'
                 OnClick = BtnExpArqExecutaSQLClick
               end
-              object BtnExpArqSalvar: TSpeedButton
+              object BtnExpArqSalvarTXT: TSpeedButton
                 AlignWithMargins = True
                 Left = 3
-                Top = 34
+                Top = 72
                 Width = 107
                 Height = 25
-                Align = alTop
-                Caption = 'Salvar'
-                OnClick = BtnExpArqSalvarClick
+                Align = alBottom
+                Caption = 'Salvar TXT'
+                OnClick = BtnExpArqSalvarTXTClick
+              end
+              object BtnExpArqSalvarJSON: TSpeedButton
+                AlignWithMargins = True
+                Left = 3
+                Top = 103
+                Width = 107
+                Height = 25
+                Align = alBottom
+                Caption = 'Salvar JSON'
+                OnClick = BtnExpArqSalvarJSONClick
               end
             end
           end
           object DBGrid1: TDBGrid
             AlignWithMargins = True
             Left = 3
-            Top = 89
+            Top = 134
             Width = 820
-            Height = 371
+            Height = 326
             Align = alClient
             DataSource = DtsExporta
             TabOrder = 1
@@ -173,6 +175,10 @@ inherited FrmPrincipal: TFrmPrincipal
         end
       end
     end
+  end
+  inherited OpenDialog1: TOpenDialog
+    Left = 710
+    Top = 250
   end
   object DtsExporta: TDataSource
     DataSet = DtmExportaArquivo.QryExportaArquivo

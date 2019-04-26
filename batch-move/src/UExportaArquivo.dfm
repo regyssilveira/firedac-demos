@@ -1,7 +1,7 @@
 object DtmExportaArquivo: TDtmExportaArquivo
   OldCreateOrder = False
   Height = 275
-  Width = 406
+  Width = 530
   object FDBatchMoveTextWriter1: TFDBatchMoveTextWriter
     DataDef.Fields = <>
     Encoding = ecANSI
@@ -32,7 +32,12 @@ object DtmExportaArquivo: TDtmExportaArquivo
     Filter = 'arquivos de texto|*.txt'
     Options = [ofHideReadOnly, ofNoChangeDir, ofEnableSizing]
     Title = 'Salvar arquivo'
-    Left = 249
-    Top = 35
+    Left = 384
+    Top = 210
+  end
+  object FDBatchMoveJSONWriter1: TFDBatchMoveJSONWriter
+    DataDef.Fields = <>
+    Left = 405
+    Top = 85
   end
 end
