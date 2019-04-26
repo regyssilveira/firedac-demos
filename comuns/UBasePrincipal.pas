@@ -54,7 +54,7 @@ var
 implementation
 
 uses
-  UFBConnection, UConfig;
+  UConfig;
 
 {$R *.dfm}
 
@@ -83,30 +83,6 @@ end;
 
 procedure TFrmBasePrincipal.BtnSalvarConfiguracoesClick(Sender: TObject);
 begin
-  if Trim(EdtFBServidor.Text) = '' then
-  begin
-    EdtFBServidor.SetFocus;
-    raise Exception.Create('Servidor de banco de dados não foi informado!');
-  end;
-
-  if Trim(EdtFBCaminho.Text) = '' then
-  begin
-    EdtFBCaminho.SetFocus;
-    raise Exception.Create('Caminho ou Alias do banco de dados não foi informado!');
-  end;
-
-  if Trim(EdtPGServidor.Text) = '' then
-  begin
-    EdtPGServidor.SetFocus;
-    raise Exception.Create('Servidor de banco de dados não foi informado!');
-  end;
-
-  if Trim(EdtPGCaminho.Text) = '' then
-  begin
-    EdtPGCaminho.SetFocus;
-    raise Exception.Create('Caminho ou Alias do banco de dados não foi informado!');
-  end;
-
   ConfigDemo.FBServer.Servidor := EdtFBServidor.Text;
   ConfigDemo.FBServer.Porta    := EdtFBPorta.Text;
   ConfigDemo.FBServer.Caminho  := EdtFBCaminho.Text;
