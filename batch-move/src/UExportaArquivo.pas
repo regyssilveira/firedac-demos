@@ -29,7 +29,7 @@ var
 implementation
 
 uses
-  UConnection;
+  UFBConnection;
 
 {%CLASSGROUP 'Vcl.Controls.TControl'}
 

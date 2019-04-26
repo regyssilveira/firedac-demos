@@ -6,13 +6,17 @@ uses
   System.SysUtils, System.Classes, System.IniFiles;
 
 type
-  TDemoFiredacConfig = class(TIniFile)
+  TConfigServer = class
   const
-    SECAO       = 'CONFIG';
     ID_SERVIDOR = 'Servidor';
     ID_PORTA    = 'Porta';
     ID_CAMINHO  = 'Caminho';
+    ID_USUARIO  = 'Usuario';
+    ID_SENHA    = 'Senha';
   private
+    FOwner: TIniFile;
+    FSecao: string;
+
     function GetServidor: string;
     procedure SetServidor(const Value: string);
     function GetPorta: string;
@@ -20,6 +24,8 @@ type
     function GetCaminho: string;
     procedure SetCaminho(const Value: string);
   public
+    constructor Create(const ASecao: string; const AOwner: TIniFile);
+
     function IsLocal: boolean;
 
     property Servidor: string read GetServidor write SetServidor;
@@ -27,49 +33,85 @@ type
     property Caminho: string read GetCaminho write SetCaminho;
   end;
 
+  TDemoFiredacConfig = class(TIniFile)
+  private
+    FFBServer: TConfigServer;
+    FPGServer: TConfigServer;
+  public
+    constructor Create(const FileName: string);
+    destructor Destroy; override;
+
+    property FBServer: TConfigServer read FFBServer write FFBServer;
+    property PGServer: TConfigServer read FPGServer write FPGServer;
+  end;
+
 var
   ConfigDemo: TDemoFiredacConfig;
 
 implementation
 
-{ TDemoFiredacConfig }
+{ TConfigServer }
 
-
-function TDemoFiredacConfig.IsLocal: boolean;
+function TConfigServer.IsLocal: boolean;
 begin
   Result :=
     Self.Servidor.ToUpper.Equals('LOCALHOST') or
     Self.Servidor.ToUpper.Equals('127.0.0.1')
 end;
 
-function TDemoFiredacConfig.GetCaminho: string;
+constructor TConfigServer.Create(const ASecao: string; const AOwner: TIniFile);
 begin
-  Result := Self.ReadString(SECAO, ID_CAMINHO, '');
+  FOwner := AOwner;
+  FSecao := ASecao;
 end;
 
-function TDemoFiredacConfig.GetPorta: string;
+function TConfigServer.GetCaminho: string;
 begin
-  Result := Self.ReadString(SECAO, ID_PORTA, '3050');
+  Result := FOwner.ReadString(FSECAO, ID_CAMINHO, '');
 end;
 
-function TDemoFiredacConfig.GetServidor: string;
+function TConfigServer.GetPorta: string;
 begin
-  Result := Self.ReadString(SECAO, ID_SERVIDOR, 'localhost');
+  Result := FOwner.ReadString(FSECAO, ID_PORTA, '3050');
 end;
 
-procedure TDemoFiredacConfig.SetCaminho(const Value: string);
+function TConfigServer.GetServidor: string;
 begin
-  Self.WriteString(SECAO, ID_CAMINHO, Value);
+  Result := FOwner.ReadString(FSECAO, ID_SERVIDOR, 'localhost');
 end;
 
-procedure TDemoFiredacConfig.SetPorta(const Value: string);
+procedure TConfigServer.SetCaminho(const Value: string);
 begin
-  Self.WriteString(SECAO, ID_PORTA, Value);
+  FOwner.WriteString(FSECAO, ID_CAMINHO, Value);
 end;
 
-procedure TDemoFiredacConfig.SetServidor(const Value: string);
+procedure TConfigServer.SetPorta(const Value: string);
 begin
-  Self.WriteString(SECAO, ID_SERVIDOR, Value);
+  FOwner.WriteString(FSECAO, ID_PORTA, Value);
+end;
+
+procedure TConfigServer.SetServidor(const Value: string);
+begin
+  FOwner.WriteString(FSECAO, ID_SERVIDOR, Value);
+end;
+
+
+{ TDemoFiredacConfig }
+
+constructor TDemoFiredacConfig.Create(const FileName: string);
+begin
+  inherited;
+
+  FFBServer := TConfigServer.Create('FIREBIRD', Self);
+  FPGServer := TConfigServer.Create('POSTGRESQL', Self);
+end;
+
+destructor TDemoFiredacConfig.Destroy;
+begin
+  FFBServer.DisposeOf;
+  FPGServer.DisposeOf;
+
+  inherited;
 end;
 
 initialization

@@ -36,7 +36,7 @@ var
 implementation
 
 uses
-  UConnection, UConfig;
+  UFBConnection, UConfig;
 
 {$R *.dfm}
 
@@ -44,9 +44,9 @@ procedure TFrmBasePrincipal.FormCreate(Sender: TObject);
 begin
   PageControl1.ActivePageIndex := 0;
 
-  EdtBancoServidor.Text := ConfigDemo.Servidor;
-  EdtBancoPorta.Text    := ConfigDemo.Porta;
-  EdtBancoCaminho.Text  := ConfigDemo.Caminho;
+  EdtBancoServidor.Text := ConfigDemo.FBServer.Servidor;
+  EdtBancoPorta.Text    := ConfigDemo.FBServer.Porta;
+  EdtBancoCaminho.Text  := ConfigDemo.FBServer.Caminho;
 end;
 
 procedure TFrmBasePrincipal.BtnProcurarBancoLocalClick(Sender: TObject);
@@ -69,9 +69,9 @@ begin
     raise Exception.Create('Caminho ou Alias do banco de dados não foi informado!');
   end;
 
-  ConfigDemo.Servidor := EdtBancoServidor.Text;
-  ConfigDemo.Porta    := EdtBancoPorta.Text;
-  ConfigDemo.Caminho  := EdtBancoCaminho.Text;
+  ConfigDemo.FBServer.Servidor := EdtBancoServidor.Text;
+  ConfigDemo.FBServer.Porta    := EdtBancoPorta.Text;
+  ConfigDemo.FBServer.Caminho  := EdtBancoCaminho.Text;
 
   ShowMessage('Configurações salvas!');
 end;

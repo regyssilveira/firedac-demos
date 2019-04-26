@@ -198,7 +198,7 @@ inherited FrmPrincipal: TFrmPrincipal
     Top = 325
   end
   object FDQuery1: TFDQuery
-    Connection = DtmConnection.FDConnection1
+    Connection = DtmFBConnection.FDConnection1
     SQL.Strings = (
       '')
     Left = 470

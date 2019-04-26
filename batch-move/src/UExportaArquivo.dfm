@@ -22,7 +22,7 @@ object DtmExportaArquivo: TDtmExportaArquivo
     Top = 84
   end
   object QryExportaArquivo: TFDQuery
-    Connection = DtmConnection.FDConnection1
+    Connection = DtmFBConnection.FDConnection1
     Left = 80
     Top = 35
   end

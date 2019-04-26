@@ -98,7 +98,7 @@ inherited FrmPrincipal: TFrmPrincipal
   end
   object QryMestre: TFDQuery
     CachedUpdates = True
-    Connection = DtmConnection.FDConnection1
+    Connection = DtmFBConnection.FDConnection1
     SchemaAdapter = FDSchemaAdapter1
     FetchOptions.AssignedValues = [evDetailCascade]
     SQL.Strings = (
@@ -124,7 +124,7 @@ inherited FrmPrincipal: TFrmPrincipal
     MasterSource = DtsMestre
     MasterFields = 'ID_MESTRE'
     DetailFields = 'ID_MESTRE'
-    Connection = DtmConnection.FDConnection1
+    Connection = DtmFBConnection.FDConnection1
     SchemaAdapter = FDSchemaAdapter1
     FetchOptions.AssignedValues = [evDetailCascade, evDetailServerCascade]
     FetchOptions.DetailCascade = True

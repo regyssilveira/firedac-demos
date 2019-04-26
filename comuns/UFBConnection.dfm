@@ -1,4 +1,4 @@
-object DtmConnection: TDtmConnection
+object DtmFBConnection: TDtmFBConnection
   OldCreateOrder = False
   OnDestroy = DataModuleDestroy
   Height = 305

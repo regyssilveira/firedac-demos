@@ -61,7 +61,7 @@ object DtmImportaArquivo: TDtmImportaArquivo
     Top = 110
   end
   object QryBatchMove: TFDQuery
-    Connection = DtmConnection.FDConnection1
+    Connection = DtmFBConnection.FDConnection1
     UpdateOptions.AssignedValues = [uvUpdateChngFields, uvUpdateMode, uvLockMode, uvLockPoint, uvLockWait, uvRefreshMode, uvFetchGeneratorsPoint, uvCheckRequired, uvCheckReadOnly, uvCheckUpdatable]
     UpdateOptions.UpdateChangedFields = False
     UpdateOptions.LockWait = True
@@ -80,7 +80,7 @@ object DtmImportaArquivo: TDtmImportaArquivo
     Top = 25
   end
   object QryInsertBatchmove: TFDQuery
-    Connection = DtmConnection.FDConnection1
+    Connection = DtmFBConnection.FDConnection1
     FetchOptions.AssignedValues = [evMode, evItems]
     FetchOptions.Mode = fmManual
     FetchOptions.Items = [fiMeta]

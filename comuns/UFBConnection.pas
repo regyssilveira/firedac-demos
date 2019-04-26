@@ -1,4 +1,4 @@
-unit UConnection;
+unit UFBConnection;
 
 interface
 
@@ -11,7 +11,7 @@ uses
   FireDAC.Comp.Client;
 
 type
-  TDtmConnection = class(TDataModule)
+  TDtmFBConnection = class(TDataModule)
     FDConnection1: TFDConnection;
     FDGUIxWaitCursor1: TFDGUIxWaitCursor;
     FDGUIxErrorDialog1: TFDGUIxErrorDialog;
@@ -26,7 +26,7 @@ type
   end;
 
 var
-  DtmConnection: TDtmConnection;
+  DtmFBConnection: TDtmFBConnection;
 
 implementation
 
@@ -37,27 +37,27 @@ uses
 
 {$R *.dfm}
 
-procedure TDtmConnection.DataModuleDestroy(Sender: TObject);
+procedure TDtmFBConnection.DataModuleDestroy(Sender: TObject);
 begin
   FDConnection1.Close;
 end;
 
-procedure TDtmConnection.FDConnection1BeforeConnect(Sender: TObject);
+procedure TDtmFBConnection.FDConnection1BeforeConnect(Sender: TObject);
 begin
-  if ConfigDemo.Servidor.Trim.IsEmpty then
+  if ConfigDemo.FBServer.Servidor.Trim.IsEmpty then
     raise EDatabaseError.Create('Servidor da base de dados ainda não foi configurado!');
 
-  if ConfigDemo.Caminho.Trim.IsEmpty then
+  if ConfigDemo.FBServer.Caminho.Trim.IsEmpty then
     raise EDatabaseError.Create('Caminho da base de dados ou alias ainda não foi configurado!');
 
-  if ConfigDemo.IsLocal then
+  if ConfigDemo.FBServer.IsLocal then
     FDConnection1.Params.Values['Protocol'] := 'LOCAL'
   else
     FDConnection1.Params.Values['Protocol'] := 'TCP';
 
-  FDConnection1.Params.Values['Server']   := ConfigDemo.Servidor;
-  FDConnection1.Params.Values['Port']     := ConfigDemo.Porta;
-  FDConnection1.Params.Values['Database'] := ConfigDemo.Caminho;
+  FDConnection1.Params.Values['Server']   := ConfigDemo.FBServer.Servidor;
+  FDConnection1.Params.Values['Port']     := ConfigDemo.FBServer.Porta;
+  FDConnection1.Params.Values['Database'] := ConfigDemo.FBServer.Caminho;
 end;
 
 end.

@@ -7,6 +7,7 @@ inherited FrmPrincipal: TFrmPrincipal
   inherited PageControl1: TPageControl
     Width = 848
     Height = 525
+    ActivePage = TabSheet2
     inherited TabSheet1: TTabSheet
       object PageControl2: TPageControl
         AlignWithMargins = True
@@ -150,6 +151,13 @@ inherited FrmPrincipal: TFrmPrincipal
           ImageIndex = 3
         end
       end
+    end
+    inherited TabSheet2: TTabSheet
+      Caption = 'Configura'#231#245'es FB'
+    end
+    object TabSheet7: TTabSheet
+      Caption = 'Configura'#231#245'es PG'
+      ImageIndex = 2
     end
   end
   object DtsExporta: TDataSource

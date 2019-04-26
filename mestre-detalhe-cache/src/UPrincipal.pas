@@ -44,7 +44,7 @@ var
 implementation
 
 uses
-  UConnection;
+  UFBConnection;
 
 {$R *.dfm}
 

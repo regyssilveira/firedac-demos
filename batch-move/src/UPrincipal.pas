@@ -32,6 +32,7 @@ type
     BtnImpArquivo: TSpeedButton;
     DtsBatchMove: TDataSource;
     BtnImpArquivoAbrir: TSpeedButton;
+    TabSheet7: TTabSheet;
     procedure FormCreate(Sender: TObject);
     procedure BtnExpArqExecutaSQLClick(Sender: TObject);
     procedure BtnExpArqSalvarClick(Sender: TObject);
@@ -49,7 +50,7 @@ var
 implementation
 
 uses
-  UConnection, UEXportaArquivo, UImportaArquivo;
+  UFBConnection, UEXportaArquivo, UImportaArquivo;
 
 {$R *.dfm}
 

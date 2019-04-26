@@ -32,7 +32,7 @@ var
 implementation
 
 uses
-  UConnection;
+  UFBConnection;
 
 {$R *.dfm}
 
@@ -45,7 +45,7 @@ procedure TFrmPrincipal.LimparTabelaArrayDML;
 var
   CountItens: Integer;
 begin
-  CountItens := DtmConnection.FDConnection1.ExecSQL('delete from ARRAYDML');
+  CountItens := DtmFBConnection.FDConnection1.ExecSQL('delete from ARRAYDML');
 
   LogMsg(
     Format('%d registro(s) apagado(s) da tabela, começando inserção', [CountItens])
@@ -57,7 +57,7 @@ var
   I: Integer;
   Inicio: TDateTime;
 begin
-  DtmConnection.FDConnection1.StartTransaction;
+  DtmFBConnection.FDConnection1.StartTransaction;
   try
     LogMsg('');
     LimparTabelaArrayDML;
@@ -65,14 +65,14 @@ begin
     Inicio := Now;
     for I := 0 to edtQuantidadeItens.Value -1 do
     begin
-      DtmConnection.FDConnection1.ExecSQL(
+      DtmFBConnection.FDConnection1.ExecSQL(
         'INSERT INTO ARRAYDML (ID, DESCRICAO) VALUES (?, ?)',
         [I + 1, Format('Descrição do item %d', [I + 1])],
         [ftInteger, ftString]
       )
     end;
 
-    DtmConnection.FDConnection1.Commit;
+    DtmFBConnection.FDConnection1.Commit;
 
     LogMsg('Itens inseridos corretamente, tempo: ' +
       FormatDateTime('hh:mm:ss:zzz', Now - Inicio)
@@ -80,7 +80,7 @@ begin
   except
     on E: Exception do
     begin
-      DtmConnection.FDConnection1.Rollback;
+      DtmFBConnection.FDConnection1.Rollback;
       ShowMessage(
         'Ocorreu o seguinte erro durante a inserção de itens: ' + sLineBreak +
         E.Message
@@ -95,14 +95,14 @@ var
   QryInsert: TFDQuery;
   Inicio: TDateTime;
 begin
-  DtmConnection.FDConnection1.StartTransaction;
+  DtmFBConnection.FDConnection1.StartTransaction;
   try
     LogMsg('');
     LimparTabelaArrayDML;
 
     QryInsert := TFDQuery.Create(Self);
     try
-      QryInsert.Connection := DtmConnection.FDConnection1;
+      QryInsert.Connection := DtmFBConnection.FDConnection1;
       QryInsert.SQL.Text   := 'INSERT INTO ARRAYDML (ID, DESCRICAO) VALUES (:ID, :DESCRICAO)';
 
       Inicio := Now;
@@ -116,7 +116,7 @@ begin
       end;
 
       QryInsert.Execute(QryInsert.Params.ArraySize);
-      DtmConnection.FDConnection1.Commit;
+      DtmFBConnection.FDConnection1.Commit;
 
       LogMsg('Itens inseridos corretamente, tempo: ' +
         FormatDateTime('hh:mm:ss:zzz', Now - Inicio)
@@ -127,7 +127,7 @@ begin
   except
     on E: Exception do
     begin
-      DtmConnection.FDConnection1.Rollback;
+      DtmFBConnection.FDConnection1.Rollback;
       ShowMessage(
         'Ocorreu o seguinte erro durante a inserção de itens: ' + sLineBreak +
         E.Message

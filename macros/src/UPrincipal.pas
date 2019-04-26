@@ -49,14 +49,14 @@ var
 implementation
 
 uses
-  UConnection, UConfig;
+  UFBConnection, UConfig;
 
 {$R *.dfm}
 
 procedure TFrmPrincipal.PopularListaTabelas(const ALista: TListBox);
 begin
-  DtmConnection.FDConnection1.Open;
-  DtmConnection.FDConnection1.GetTableNames('', '', '', ALista.Items);
+  DtmFBConnection.FDConnection1.Open;
+  DtmFBConnection.FDConnection1.GetTableNames('', '', '', ALista.Items);
 
   if ALista.Count > 0 then
     ALista.ItemIndex := 0;
@@ -64,8 +64,8 @@ end;
 
 procedure TFrmPrincipal.PopularListaCampos(const ATabela: string; const ALista: TListBox);
 begin
-  DtmConnection.FDConnection1.Open;
-  DtmConnection.FDConnection1.GetFieldNames('', '', ATabela, '', ALista.Items);
+  DtmFBConnection.FDConnection1.Open;
+  DtmFBConnection.FDConnection1.GetFieldNames('', '', ATabela, '', ALista.Items);
 
   if ALista.Count > 0 then
     ALista.ItemIndex := 0;
