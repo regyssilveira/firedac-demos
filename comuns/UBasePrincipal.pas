@@ -19,7 +19,6 @@ type
     EdtPGCaminho: TEdit;
     EdtPGServidor: TEdit;
     EdtPGPorta: TEdit;
-    SpeedButton2: TSpeedButton;
     Label7: TLabel;
     EdtPGUsuario: TEdit;
     Label8: TLabel;
@@ -77,6 +76,9 @@ end;
 
 procedure TFrmBasePrincipal.BtnProcurarBancoLocalClick(Sender: TObject);
 begin
+  OpenDialog1.DefaultExt := '*.fdb';
+  OpenDialog1.Filter := 'Arquivos de banco de dados Firebrid|*.fdb';
+
   if OpenDialog1.Execute then
     EdtFBCaminho.Text := OpenDialog1.FileName;
 end;

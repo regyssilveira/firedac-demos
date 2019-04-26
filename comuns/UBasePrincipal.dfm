@@ -42,57 +42,49 @@ object FrmBasePrincipal: TFrmBasePrincipal
         TabOrder = 1
         Visible = False
         object Label4: TLabel
-          Left = 25
+          Left = 17
           Top = 24
           Width = 40
           Height = 13
           Caption = 'Servidor'
         end
         object Label6: TLabel
-          Left = 24
+          Left = 16
           Top = 110
           Width = 41
           Height = 13
           Caption = 'Caminho'
         end
-        object SpeedButton2: TSpeedButton
-          Left = 497
-          Top = 125
-          Width = 23
-          Height = 22
-          Caption = '...'
-          OnClick = BtnProcurarBancoLocalClick
-        end
         object Label7: TLabel
-          Left = 24
+          Left = 17
           Top = 67
           Width = 36
           Height = 13
           Caption = 'Usu'#225'rio'
         end
         object Label8: TLabel
-          Left = 182
+          Left = 174
           Top = 67
           Width = 30
           Height = 13
           Caption = 'Senha'
         end
         object Label5: TLabel
-          Left = 182
+          Left = 174
           Top = 24
           Width = 26
           Height = 13
           Caption = 'Porta'
         end
         object EdtPGCaminho: TEdit
-          Left = 25
+          Left = 16
           Top = 126
           Width = 466
           Height = 21
           TabOrder = 4
         end
         object EdtPGServidor: TEdit
-          Left = 25
+          Left = 17
           Top = 40
           Width = 151
           Height = 21
@@ -100,7 +92,7 @@ object FrmBasePrincipal: TFrmBasePrincipal
           Text = 'localhost'
         end
         object EdtPGPorta: TEdit
-          Left = 182
+          Left = 174
           Top = 40
           Width = 151
           Height = 21
@@ -110,14 +102,14 @@ object FrmBasePrincipal: TFrmBasePrincipal
           Text = '3050'
         end
         object EdtPGUsuario: TEdit
-          Left = 24
+          Left = 17
           Top = 83
           Width = 152
           Height = 21
           TabOrder = 2
         end
         object EdtPGSenha: TEdit
-          Left = 182
+          Left = 175
           Top = 83
           Width = 151
           Height = 21
