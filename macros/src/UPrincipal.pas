@@ -97,6 +97,7 @@ var
     I: Integer;
   begin
     Result := EmptyStr;
+
     for I := 0 to LstCampos.Count - 1 do
     begin
       if LstCampos.Selected[I] then
@@ -112,12 +113,12 @@ var
 begin
   ListaCampos := GetFieldList;
   if ListaCampos.Trim.IsEmpty then
-    raise Exception.Create('Nenhum campo foi selecionado!');  
+    raise Exception.Create('Nenhum campo foi selecionado!');
 
   FDQuery1.Close;
   FDQuery1.SQL.Text := 'select &campos from &tabela';
-  FDQuery1.Macros[0].AsRaw := ListaCampos;
-  FDQuery1.Macros[1].AsRaw := LstTabelas.Items[LstTabelas.ItemIndex];
+  FDQuery1.MacroByName('campos').AsRaw := ListaCampos;
+  FDQuery1.Macros[1].AsRaw             := LstTabelas.Items[LstTabelas.ItemIndex];
   FDQuery1.Prepare;
   FDQuery1.Open;
 
@@ -128,7 +129,6 @@ procedure TFrmPrincipal.BtnSQLExecutarClick(Sender: TObject);
 begin
   FDQuery1.Close;
   FDQuery1.SQL.Text := MemSQL.Text;
-  FDQuery1.Prepare;
   FDQuery1.Open;
 
   MemComandoExecutado.Text := FDQuery1.Text;

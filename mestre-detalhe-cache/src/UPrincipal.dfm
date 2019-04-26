@@ -3,8 +3,11 @@ inherited FrmPrincipal: TFrmPrincipal
   PixelsPerInch = 96
   TextHeight = 13
   inherited PageControl1: TPageControl
-    ActivePage = TabSheet1
     inherited TabSheet1: TTabSheet
+      ExplicitLeft = 4
+      ExplicitTop = 24
+      ExplicitWidth = 935
+      ExplicitHeight = 592
       object Splitter1: TSplitter
         Left = 0
         Top = 126
@@ -75,6 +78,12 @@ inherited FrmPrincipal: TFrmPrincipal
         TitleFont.Name = 'Tahoma'
         TitleFont.Style = []
       end
+    end
+    inherited TabSheet2: TTabSheet
+      ExplicitLeft = 4
+      ExplicitTop = 24
+      ExplicitWidth = 935
+      ExplicitHeight = 592
     end
   end
   object DtsMestre: TDataSource

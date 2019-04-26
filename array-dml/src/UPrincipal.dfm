@@ -1,11 +1,12 @@
 inherited FrmPrincipal: TFrmPrincipal
   Caption = 'Demo Array DML'
   ClientWidth = 559
+  ExplicitWidth = 575
   PixelsPerInch = 96
   TextHeight = 13
   inherited PageControl1: TPageControl
     Width = 553
-    ActivePage = TabSheet1
+    ExplicitWidth = 553
     inherited TabSheet1: TTabSheet
       object Label4: TLabel
         Left = 20

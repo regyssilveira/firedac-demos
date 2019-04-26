@@ -5,9 +5,7 @@ object DtmConnection: TDtmConnection
   Width = 339
   object FDConnection1: TFDConnection
     Params.Strings = (
-      
-        'Database=C:\Users\regys\Desktop\Teste MD\bin\database\MESTREDETA' +
-        'LHE.FDB'
+      'Database=D:\Projetos\firedac-demos\demo-database\firebirddb.FDB'
       'User_Name=sysdba'
       'Password=masterkey'
       'CharacterSet=WIN1252'
@@ -15,6 +13,7 @@ object DtmConnection: TDtmConnection
       'Server=localhost'
       'Port=3050'
       'DriverID=FB')
+    UpdateOptions.AssignedValues = [uvAutoCommitUpdates]
     ConnectedStoredUsage = []
     LoginPrompt = False
     BeforeConnect = FDConnection1BeforeConnect
@@ -29,15 +28,15 @@ object DtmConnection: TDtmConnection
   object FDGUIxErrorDialog1: TFDGUIxErrorDialog
     Provider = 'Forms'
     Left = 207
-    Top = 105
+    Top = 110
   end
   object FDPhysFBDriverLink1: TFDPhysFBDriverLink
     Left = 207
-    Top = 151
+    Top = 161
   end
   object FDGUIxLoginDialog1: TFDGUIxLoginDialog
     Provider = 'Forms'
     Left = 207
-    Top = 195
+    Top = 210
   end
 end

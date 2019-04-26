@@ -4,6 +4,10 @@ inherited FrmPrincipal: TFrmPrincipal
   TextHeight = 13
   inherited PageControl1: TPageControl
     inherited TabSheet1: TTabSheet
+      ExplicitLeft = 4
+      ExplicitTop = 24
+      ExplicitWidth = 935
+      ExplicitHeight = 592
       object PageControl2: TPageControl
         Left = 0
         Top = 0
@@ -180,6 +184,12 @@ inherited FrmPrincipal: TFrmPrincipal
         Align = alBottom
         TabOrder = 1
       end
+    end
+    inherited TabSheet2: TTabSheet
+      ExplicitLeft = 4
+      ExplicitTop = 24
+      ExplicitWidth = 935
+      ExplicitHeight = 592
     end
   end
   object DataSource1: TDataSource

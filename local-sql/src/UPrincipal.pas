@@ -49,6 +49,13 @@ implementation
 
 procedure TForm1.Button1Click(Sender: TObject);
 begin
+  FDConnLocal.Close;
+  FDConnFirebird.Close;
+  FDConnPG.Close;
+
+  FDLocalSQL1.Active := True;
+
+  QryLocal.Close;
   QryLocal.Open;
 end;
 

@@ -36,11 +36,8 @@ object Form1: TForm1
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 0
-    ExplicitLeft = 450
-    ExplicitTop = 320
-    ExplicitWidth = 185
     object Button1: TButton
-      Left = 10
+      Left = 3
       Top = 9
       Width = 191
       Height = 25
@@ -72,12 +69,12 @@ object Form1: TForm1
   end
   object FDPhysPgDriverLink1: TFDPhysPgDriverLink
     VendorHome = 'C:\PostgreSQL\psqlodbc32bits'
-    Left = 560
-    Top = 305
+    Left = 745
+    Top = 315
   end
   object FDPhysFBDriverLink1: TFDPhysFBDriverLink
-    Left = 560
-    Top = 355
+    Left = 745
+    Top = 365
   end
   object FDGUIxErrorDialog1: TFDGUIxErrorDialog
     Provider = 'Forms'
@@ -102,8 +99,8 @@ object Form1: TForm1
     Top = 345
   end
   object FDPhysSQLiteDriverLink1: TFDPhysSQLiteDriverLink
-    Left = 560
-    Top = 405
+    Left = 745
+    Top = 415
   end
   object FDConnLocal: TFDConnection
     Params.Strings = (
@@ -132,14 +129,16 @@ object Form1: TForm1
     Connection = FDConnLocal
     SQL.Strings = (
       'select * from QryFirebird'
+      ''
       'union all'
+      ''
       'select * from QryPG')
     Left = 350
     Top = 445
   end
   object DataSource1: TDataSource
     DataSet = QryLocal
-    Left = 135
-    Top = 385
+    Left = 350
+    Top = 495
   end
 end

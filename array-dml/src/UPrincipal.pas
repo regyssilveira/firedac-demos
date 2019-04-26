@@ -47,7 +47,6 @@ var
 begin
   CountItens := DtmConnection.FDConnection1.ExecSQL('delete from ARRAYDML');
 
-
   LogMsg(
     Format('%d registro(s) apagado(s) da tabela, começando inserção', [CountItens])
   );
@@ -58,11 +57,11 @@ var
   I: Integer;
   Inicio: TDateTime;
 begin
-  LogMsg('');
-  LimparTabelaArrayDML;
-
   DtmConnection.FDConnection1.StartTransaction;
   try
+    LogMsg('');
+    LimparTabelaArrayDML;
+
     Inicio := Now;
     for I := 0 to edtQuantidadeItens.Value -1 do
     begin
@@ -96,31 +95,44 @@ var
   QryInsert: TFDQuery;
   Inicio: TDateTime;
 begin
-  LogMsg('');
-  LimparTabelaArrayDML;
-
-  QryInsert := TFDQuery.Create(Self);
+  DtmConnection.FDConnection1.StartTransaction;
   try
-    QryInsert.Connection := DtmConnection.FDConnection1;
-    QryInsert.SQL.Text   := 'INSERT INTO ARRAYDML (ID, DESCRICAO) VALUES (:ID, :DESCRICAO)';
+    LogMsg('');
+    LimparTabelaArrayDML;
 
-    Inicio := Now;
-    QryInsert.Params.ArraySize := 0;
-    for I := 0 to edtQuantidadeItens.Value -1 do
-    begin
-      QryInsert.Params.ArraySize := QryInsert.Params.ArraySize + 1;
+    QryInsert := TFDQuery.Create(Self);
+    try
+      QryInsert.Connection := DtmConnection.FDConnection1;
+      QryInsert.SQL.Text   := 'INSERT INTO ARRAYDML (ID, DESCRICAO) VALUES (:ID, :DESCRICAO)';
 
-      QryInsert.Params[0].AsIntegers[I] := I + 1;
-      QryInsert.Params[1].AsStrings[I]  := Format('Descrição do item %d', [I]);
+      Inicio := Now;
+      QryInsert.Params.ArraySize := 0;
+      for I := 0 to edtQuantidadeItens.Value -1 do
+      begin
+        QryInsert.Params.ArraySize := QryInsert.Params.ArraySize + 1;
+
+        QryInsert.Params[0].AsIntegers[I] := I + 1;
+        QryInsert.Params[1].AsStrings[I]  := Format('Descrição do item %d', [I]);
+      end;
+
+      QryInsert.Execute(QryInsert.Params.ArraySize);
+      DtmConnection.FDConnection1.Commit;
+
+      LogMsg('Itens inseridos corretamente, tempo: ' +
+        FormatDateTime('hh:mm:ss:zzz', Now - Inicio)
+      );
+    finally
+      QryInsert.DisposeOf;
     end;
-
-    QryInsert.Execute(QryInsert.Params.ArraySize);
-
-    LogMsg('Itens inseridos corretamente, tempo: ' +
-      FormatDateTime('hh:mm:ss:zzz', Now - Inicio)
-    );
-  finally
-    QryInsert.DisposeOf;
+  except
+    on E: Exception do
+    begin
+      DtmConnection.FDConnection1.Rollback;
+      ShowMessage(
+        'Ocorreu o seguinte erro durante a inserção de itens: ' + sLineBreak +
+        E.Message
+      );
+    end;
   end;
 end;
 
