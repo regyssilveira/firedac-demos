@@ -2,13 +2,20 @@ inherited FrmPrincipal: TFrmPrincipal
   Caption = 'Demo Firedac Services'
   ClientHeight = 559
   ClientWidth = 554
+  ExplicitWidth = 570
+  ExplicitHeight = 598
   PixelsPerInch = 96
   TextHeight = 13
   inherited PageControl1: TPageControl
     Width = 548
     Height = 553
-    ActivePage = TabSheet1
+    ExplicitWidth = 548
+    ExplicitHeight = 553
     inherited TabSheet1: TTabSheet
+      ExplicitLeft = 4
+      ExplicitTop = 24
+      ExplicitWidth = 540
+      ExplicitHeight = 525
       object Panel1: TPanel
         Left = 0
         Top = 0
@@ -60,17 +67,26 @@ inherited FrmPrincipal: TFrmPrincipal
       end
     end
     inherited TabSheet2: TTabSheet
+      ExplicitLeft = 4
+      ExplicitTop = 24
+      ExplicitWidth = 540
+      ExplicitHeight = 525
       inherited GbxPostgreSQL: TGroupBox
         Width = 534
+        ExplicitWidth = 534
       end
       inherited GbxFirebird: TGroupBox
         Width = 534
+        ExplicitWidth = 534
       end
       inherited PnlBotton: TPanel
         Top = 484
         Width = 540
+        ExplicitTop = 484
+        ExplicitWidth = 540
         inherited BtnSalvarConfiguracoes: TSpeedButton
           Left = 433
+          ExplicitLeft = 433
         end
       end
     end

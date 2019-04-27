@@ -32,8 +32,8 @@ object DtmExportaArquivo: TDtmExportaArquivo
     Filter = 'arquivos de texto|*.txt'
     Options = [ofHideReadOnly, ofNoChangeDir, ofEnableSizing]
     Title = 'Salvar arquivo'
-    Left = 384
-    Top = 210
+    Left = 404
+    Top = 160
   end
   object FDBatchMoveJSONWriter1: TFDBatchMoveJSONWriter
     DataDef.Fields = <>

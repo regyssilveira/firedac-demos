@@ -5,6 +5,7 @@ object DtmImportaArquivo: TDtmImportaArquivo
   object FDBatchMove1: TFDBatchMove
     Reader = FDBatchMoveTextReader1
     Writer = FDBatchMoveDataSetWriter1
+    Options = [poClearDest, poClearDestNoUndo, poIdentityInsert, poCreateDest, poSkipUnmatchedDestFields, poUseTransactions]
     Mappings = <>
     LogFileName = 'Data.log'
     Left = 150
@@ -52,7 +53,7 @@ object DtmImportaArquivo: TDtmImportaArquivo
     DataDef.Separator = ';'
     DataDef.RecordFormat = rfCustom
     DataDef.WithFieldNames = True
-    Left = 75
+    Left = 80
     Top = 110
   end
   object FDBatchMoveDataSetWriter1: TFDBatchMoveDataSetWriter

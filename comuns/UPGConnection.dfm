@@ -1,7 +1,7 @@
 object DtmPGConnection: TDtmPGConnection
   OldCreateOrder = False
-  Height = 385
-  Width = 511
+  Height = 335
+  Width = 343
   object FDConnection1: TFDConnection
     Params.Strings = (
       'Database=CursoFiredac'

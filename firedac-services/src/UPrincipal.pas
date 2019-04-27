@@ -7,7 +7,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, UBasePrincipal, Vcl.ExtCtrls,
   Vcl.StdCtrls, Vcl.Buttons, Vcl.ComCtrls, FireDAC.Stan.Def, FireDAC.VCLUI.Wait,
   FireDAC.Phys.IBWrapper, FireDAC.Phys.FBDef, FireDAC.Phys, FireDAC.Phys.IBBase,
-  FireDAC.Phys.FB, FireDAC.Stan.Intf;
+  FireDAC.Phys.FB, FireDAC.Stan.Intf, FireDAC.Phys.Oracle;
 
 type
   TFrmPrincipal = class(TFrmBasePrincipal)
@@ -54,11 +54,13 @@ var
 implementation
 
 uses
-  UFBConnection, UPGConnection, UConfig;
+  UFBConnection, UPGConnection, UConfig, System.Zip;
 
 {$R *.dfm}
 
 procedure TFrmPrincipal.BtnBackupClick(Sender: TObject);
+var
+  ZipF: TZipFile;
 begin
   Memo1.Clear;
 
@@ -76,6 +78,14 @@ begin
     FDFBNBackup1.Password := ConfigDemo.FBServer.Senha;
 
     FDFBNBackup1.BackupFile := SaveDialog1.FileName;
+
+//    ZipF := TZipFile.Create;
+//    try
+//      ZipF.Open('c:\teste\meuarquivo.zip', zmWrite);
+//      ZipF.Add(FDFBNBackup1.BackupFile);
+//    finally
+//      ZipF.DisposeOf;
+//    end;
 
     FDFBNBackup1.Backup;
   end;
@@ -95,19 +105,14 @@ begin
 
   if OpenDialog1.Execute and SaveDialog1.Execute then
   begin
-    FDFBNRestore1.Host       := ConfigDemo.FBServer.Servidor;
-    FDFBNRestore1.Port       := ConfigDemo.FBServer.Porta.ToInteger;
-    FDFBNRestore1.UserName   := ConfigDemo.FBServer.Usuario;
-    FDFBNRestore1.Password   := ConfigDemo.FBServer.Senha;
-    FDFBNRestore1.Database   := ConfigDemo.FBServer.Caminho;
+    FDFBNRestore1.Host     := 'localhost';
+    FDFBNRestore1.Protocol := ipLocal;
+    FDFBNRestore1.Port     := ConfigDemo.FBServer.Porta.ToInteger;
+    FDFBNRestore1.UserName := ConfigDemo.FBServer.Usuario;
+    FDFBNRestore1.Password := ConfigDemo.FBServer.Senha;
 
     FDFBNRestore1.BackupFiles.Add(OpenDialog1.FileName);
     FDFBNRestore1.Database := SaveDialog1.FileName;
-
-    if ConfigDemo.FBServer.IsLocal then
-      FDFBNRestore1.Protocol := ipLocal
-    else
-      FDFBNRestore1.Protocol := ipTCPIP;
 
     FDFBNRestore1.Restore;
   end;

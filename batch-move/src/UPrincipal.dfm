@@ -2,12 +2,18 @@ inherited FrmPrincipal: TFrmPrincipal
   Caption = 'Demo Batchmove'
   ClientHeight = 531
   ClientWidth = 854
+  ExplicitWidth = 870
+  ExplicitHeight = 570
   PixelsPerInch = 96
   TextHeight = 13
   inherited PageControl1: TPageControl
     Width = 848
     Height = 525
+    ExplicitWidth = 848
+    ExplicitHeight = 525
     inherited TabSheet1: TTabSheet
+      ExplicitWidth = 840
+      ExplicitHeight = 497
       object PageControl2: TPageControl
         AlignWithMargins = True
         Left = 3
@@ -160,18 +166,25 @@ inherited FrmPrincipal: TFrmPrincipal
     end
     inherited TabSheet2: TTabSheet
       Caption = 'Configura'#231#245'es FB'
+      ExplicitWidth = 840
+      ExplicitHeight = 497
       inherited GbxPostgreSQL: TGroupBox
         Width = 834
         Visible = True
+        ExplicitWidth = 834
       end
       inherited GbxFirebird: TGroupBox
         Width = 834
+        ExplicitWidth = 834
       end
       inherited PnlBotton: TPanel
         Top = 456
         Width = 840
+        ExplicitTop = 456
+        ExplicitWidth = 840
         inherited BtnSalvarConfiguracoes: TSpeedButton
           Left = 733
+          ExplicitLeft = 733
         end
       end
     end

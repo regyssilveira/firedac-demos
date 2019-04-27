@@ -20,7 +20,7 @@ object FrmBasePrincipal: TFrmBasePrincipal
     Top = 3
     Width = 943
     Height = 620
-    ActivePage = TabSheet2
+    ActivePage = TabSheet1
     Align = alClient
     TabOrder = 0
     TabStop = False
@@ -79,7 +79,7 @@ object FrmBasePrincipal: TFrmBasePrincipal
         object EdtPGCaminho: TEdit
           Left = 16
           Top = 126
-          Width = 466
+          Width = 310
           Height = 21
           TabOrder = 4
         end

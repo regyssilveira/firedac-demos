@@ -24,7 +24,7 @@ type
     procedure btnExecucaoNormalClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
   private
-    procedure AddConfiguracaoManager;
+
   public
 
   end;
@@ -32,45 +32,12 @@ type
 var
   FrmPrincipal: TFrmPrincipal;
 
-const
-  SEU_NOME_CONEXAO = 'MINHA_CONEXAO_POOL_FB';
-
 implementation
 
 uses
-  UConfig, System.Threading;
+  UConfig, System.Threading, UConfConnection;
 
 {$R *.dfm}
-
-procedure TfrmPrincipal.AddConfiguracaoManager;
-var
-  oParam: TStringList;
-begin
-  // criar os parametro e adicionar ao fdmanager somente uma vez
-  FDManager.Close;
-  oParam := TStringList.Create;
-  try
-    oParam.Clear;
-    oParam.Add('DriverID=FB');
-    oParam.Add('Port=3050');
-    oParam.Add('CharacterSet=WIN1252');
-    oParam.Add('Server=' + ConfigDemo.FBServer.Servidor);
-    oParam.Add('Database=' + ConfigDemo.FBServer.Caminho);
-    oParam.Add('User_Name=' + ConfigDemo.FBServer.Usuario);
-    oParam.Add('Password=' + ConfigDemo.FBServer.Senha);
-
-    if ConfigDemo.FBServer.IsLocal then
-      oParam.Add('Protocol=LOCAL')
-    else
-      oParam.Add('Protocol=TCPIP');
-
-    // adicionar a conexão ao fdmamanger e usar o nome da conexão
-    FDManager.AddConnectionDef(SEU_NOME_CONEXAO, 'FB', oParam);
-    FDManager.Open;
-  finally
-    oParam.Free;
-  end;
-end;
 
 procedure TFrmPrincipal.FormCreate(Sender: TObject);
 begin
