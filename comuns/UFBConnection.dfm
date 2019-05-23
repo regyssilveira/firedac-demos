@@ -12,10 +12,12 @@ object DtmFBConnection: TDtmFBConnection
       'Protocol=TCPIP'
       'Server=localhost'
       'Port=3050'
+      'MonitorBy=Remote'
       'DriverID=FB')
     UpdateOptions.AssignedValues = [uvAutoCommitUpdates]
     ConnectedStoredUsage = []
     LoginPrompt = False
+    AfterConnect = FDConnection1AfterConnect
     BeforeConnect = FDConnection1BeforeConnect
     Left = 92
     Top = 60
@@ -38,5 +40,10 @@ object DtmFBConnection: TDtmFBConnection
     Provider = 'Forms'
     Left = 207
     Top = 210
+  end
+  object FDMoniRemoteClientLink1: TFDMoniRemoteClientLink
+    Tracing = True
+    Left = 75
+    Top = 145
   end
 end

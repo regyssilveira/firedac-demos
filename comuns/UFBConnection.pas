@@ -8,7 +8,7 @@ uses
   FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys, FireDAC.Phys.FB,
   FireDAC.Phys.FBDef, FireDAC.VCLUI.Wait, FireDAC.VCLUI.Error,
   FireDAC.VCLUI.Login, FireDAC.Comp.UI, FireDAC.Phys.IBBase, Data.DB,
-  FireDAC.Comp.Client;
+  FireDAC.Comp.Client, FireDAC.Moni.Base, FireDAC.Moni.RemoteClient;
 
 type
   TDtmFBConnection = class(TDataModule)
@@ -17,8 +17,10 @@ type
     FDGUIxErrorDialog1: TFDGUIxErrorDialog;
     FDPhysFBDriverLink1: TFDPhysFBDriverLink;
     FDGUIxLoginDialog1: TFDGUIxLoginDialog;
+    FDMoniRemoteClientLink1: TFDMoniRemoteClientLink;
     procedure FDConnection1BeforeConnect(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
+    procedure FDConnection1AfterConnect(Sender: TObject);
   private
     { Private declarations }
   public
@@ -40,6 +42,11 @@ uses
 procedure TDtmFBConnection.DataModuleDestroy(Sender: TObject);
 begin
   FDConnection1.Close;
+end;
+
+procedure TDtmFBConnection.FDConnection1AfterConnect(Sender: TObject);
+begin
+  FDConnection1.ConnectionIntf.Tracing := True;
 end;
 
 procedure TDtmFBConnection.FDConnection1BeforeConnect(Sender: TObject);

@@ -1,11 +1,11 @@
-program ArrayDML;
+program FetchOptions;
 
 uses
   Vcl.Forms,
   UBasePrincipal in '..\..\comuns\UBasePrincipal.pas' {FrmBasePrincipal},
   UConfig in '..\..\comuns\UConfig.pas',
-  UPrincipal in 'UPrincipal.pas' {FrmPrincipal},
-  UFBConnection in '..\..\comuns\UFBConnection.pas' {DtmFBConnection: TDataModule};
+  UFBConnection in '..\..\comuns\UFBConnection.pas' {DtmFBConnection: TDataModule},
+  UPrincipal in 'UPrincipal.pas' {FrmPrincipal};
 
 {$R *.res}
 
