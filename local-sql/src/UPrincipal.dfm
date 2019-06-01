@@ -48,7 +48,7 @@ object Form1: TForm1
   end
   object FDConnFirebird: TFDConnection
     Params.Strings = (
-      'Database=D:\projetos\firedac-demos\demo-database\firebirddb.FDB'
+      'Database=C:\CursoFiredac\CURSOFIREDAC.FDB'
       'User_Name=sysdba'
       'Password=masterkey'
       'CharacterSet=WIN1252'

@@ -1,8 +1,8 @@
 object DtmFBConnection: TDtmFBConnection
   OldCreateOrder = False
   OnDestroy = DataModuleDestroy
-  Height = 305
-  Width = 339
+  Height = 518
+  Width = 636
   object FDConnection1: TFDConnection
     Params.Strings = (
       'Database=D:\Projetos\firedac-demos\demo-database\firebirddb.FDB'
@@ -19,7 +19,7 @@ object DtmFBConnection: TDtmFBConnection
     LoginPrompt = False
     AfterConnect = FDConnection1AfterConnect
     BeforeConnect = FDConnection1BeforeConnect
-    Left = 92
+    Left = 77
     Top = 60
   end
   object FDGUIxWaitCursor1: TFDGUIxWaitCursor

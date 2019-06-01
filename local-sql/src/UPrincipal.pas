@@ -55,7 +55,6 @@ begin
 
   FDLocalSQL1.Active := True;
 
-  QryLocal.Close;
   QryLocal.Open;
 end;
 

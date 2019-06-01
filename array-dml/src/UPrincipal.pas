@@ -122,7 +122,7 @@ begin
         FormatDateTime('hh:mm:ss:zzz', Now - Inicio)
       );
     finally
-      QryInsert.DisposeOf;
+      QryInsert.Free;
     end;
   except
     on E: Exception do
