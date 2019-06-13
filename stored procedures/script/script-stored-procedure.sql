@@ -1,0 +1,48 @@
+CREATE TABLE UF (
+    UF         CHAR(2) NOT NULL,
+    DESCRICAO  VARCHAR(50),
+
+    CONSTRAINT PK_UF PRIMARY KEY (UF)
+);
+
+SET TERM ^ ;
+
+CREATE OR ALTER PROCEDURE PR_UF_INSERIR (
+    P_UF CHAR(2),
+    P_DESCRICAO VARCHAR(100))
+AS
+begin
+    INSERT INTO UF (
+        UF, DESCRICAO
+    ) VALUES (
+        :P_UF, :P_DESCRICAO
+    );
+end^
+
+
+CREATE OR ALTER PROCEDURE PR_UF_BUSCA (
+    P_DESCRICAO VARCHAR(50))
+RETURNS (
+    UF CHAR(2),
+    DESCRICAO VARCHAR(50))
+AS
+BEGIN
+  FOR
+    select
+      UF,
+      DESCRICAO
+    from
+      uf
+    where
+      uf.DESCRICAO CONTAINING :p_descricao
+    INTO
+      :UF,
+      :DESCRICAO
+  DO
+  BEGIN
+
+    SUSPEND;
+  END
+END^
+
+SET TERM ; ^
