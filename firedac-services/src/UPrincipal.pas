@@ -54,13 +54,13 @@ var
 implementation
 
 uses
-  UFBConnection, UPGConnection, UConfig, System.Zip;
+  UFBConnection, UConfig, System.Zip;
 
 {$R *.dfm}
 
 procedure TFrmPrincipal.BtnBackupClick(Sender: TObject);
-var
-  ZipF: TZipFile;
+//var
+//  ZipF: TZipFile;
 begin
   Memo1.Clear;
 
@@ -78,6 +78,7 @@ begin
     FDFBNBackup1.Password := ConfigDemo.FBServer.Senha;
 
     FDFBNBackup1.BackupFile := SaveDialog1.FileName;
+    FDFBNBackup1.Backup;
 
 //    ZipF := TZipFile.Create;
 //    try
@@ -86,8 +87,6 @@ begin
 //    finally
 //      ZipF.DisposeOf;
 //    end;
-
-    FDFBNBackup1.Backup;
   end;
 end;
 
