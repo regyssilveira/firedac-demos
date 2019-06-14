@@ -118,7 +118,7 @@ begin
   FDQuery1.Close;
   FDQuery1.SQL.Text := 'select &campos from &tabela';
   FDQuery1.MacroByName('campos').AsRaw := ListaCampos;
-  FDQuery1.Macros[1].AsRaw             := LstTabelas.Items[LstTabelas.ItemIndex];
+  FDQuery1.MacroByName('tabela').AsRaw := LstTabelas.Items[LstTabelas.ItemIndex];
   FDQuery1.Prepare;
   FDQuery1.Open;
 

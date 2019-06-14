@@ -12,6 +12,7 @@ uses
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TDtmFBConnection, DtmFBConnection);
   Application.CreateForm(TFrmPrincipal, FrmPrincipal);
   Application.Run;
 end.
