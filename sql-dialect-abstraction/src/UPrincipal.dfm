@@ -84,8 +84,19 @@ inherited FrmBasePrincipal1: TFrmBasePrincipal1
       end
     end
   end
+  inherited OpenDialog1: TOpenDialog
+    Left = 595
+    Top = 315
+  end
   object FDQuery1: TFDQuery
     AfterOpen = FDQuery1AfterOpen
+    FormatOptions.AssignedValues = [fvMapRules]
+    FormatOptions.OwnMapRules = True
+    FormatOptions.MapRules = <
+      item
+        SourceDataType = dtWideMemo
+        TargetDataType = dtWideString
+      end>
     Left = 470
     Top = 320
   end
